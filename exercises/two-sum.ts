@@ -1,22 +1,19 @@
-export function twoSum(nums: number[], target: number): number[] {
-    const indices: number[] = [];
+export function twoSum(nums: number[], target: number): number[] | OnBeforeUnloadEventHandler {
+  for (let i = 0; i < nums.length - 1; i++) {
+    const indice = target - nums[i];
 
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = 0; j < nums.length; j++) {
-            const sum = nums[i] + nums[j];
-            if (i !== j && sum === target) {
-                indices.push(i);
-                indices.push(j);
-                break;
-            }
-        }
-
-        if (indices.length) {
-            break;
-        }
+    if (indice <= 0) {
+      continue;
     }
 
-    return indices;
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[j] === indice) {
+        return [i, j];
+      }
+    }
+  }
+
+  return null;
 };
 
 // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -25,7 +22,7 @@ export function twoSum(nums: number[], target: number): number[] {
 
 // You can return the answer in any order.
 
- 
+
 
 // Example 1:
 
@@ -40,7 +37,7 @@ export function twoSum(nums: number[], target: number): number[] {
 
 // Input: nums = [3,3], target = 6
 // Output: [0,1]
- 
+
 
 // Constraints:
 
@@ -48,22 +45,24 @@ export function twoSum(nums: number[], target: number): number[] {
 // -109 <= nums[i] <= 109
 // -109 <= target <= 109
 // Only one valid answer exists.
- 
+
 
 // Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
 
-export function twoSumOptimized(nums: number[], target: number): number[] {
-    const numbersMap = new Map();
+export function twoSumOptimized(nums: number[], target: number): number[] | null {
+  const numbersMap = new Map();
 
-    for (let i = 0; i < nums.length; i++) {
-        const num = nums[i];
-        const difference = target - num;
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+    const difference = target - num;
 
-        if(numbersMap.has(difference)) {
-            return [numbersMap.get(difference), i];
-        }
-
-        numbersMap.set(num, i);
-
+    if (numbersMap.has(difference)) {
+      return [numbersMap.get(difference), i];
     }
+
+    numbersMap.set(num, i);
+
+  }
+
+  return null;
 };

@@ -88,5 +88,5 @@ export const runPlayground = () => {
   // newTree.insert(6);
   // newTree.insert(15);
   // newTree.insert(170);
-  // console.log(newTree); 
+  // console.log(newTree);
 }
